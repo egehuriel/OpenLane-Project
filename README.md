@@ -227,7 +227,7 @@ make help         # Show all available commands
 ### Manually (inside Docker container)
 
 ```bash
-cd ~/egehuriel/projects/OpenLane
+cd ~/user/projects/OpenLane
 make mount
 
 # Inside the container:

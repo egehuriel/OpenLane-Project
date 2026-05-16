@@ -207,12 +207,30 @@ designs/
 
 ## Running the Flow
 
+### Using Make (recommended)
+
+Run from the project root without entering the Docker container:
+
 ```bash
-# Start OpenLane Docker container
-cd ~/OpenLane
+make part1        # Run Part 1 only
+make part2        # Run Part 2 only
+make part3        # Run Part 3 only
+make part4        # Run Part 4 only
+make part5        # Run Part 5 only
+make all          # Run all 5 parts sequentially
+make gds          # Show GDS output paths for all parts
+make clean        # Remove all run directories
+make clean_part3  # Remove runs for a specific part
+make help         # Show all available commands
+```
+
+### Manually (inside Docker container)
+
+```bash
+cd ~/egehuriel/projects/OpenLane
 make mount
 
-# Run a specific part
+# Inside the container:
 ./flow.tcl -design part1_alu
 ./flow.tcl -design part2_alu_flags
 ./flow.tcl -design part3_regfile
@@ -220,7 +238,7 @@ make mount
 ./flow.tcl -design part5_full
 ```
 
-## Viewing the GDS Output
+### Viewing GDS Output
 
 ```bash
 open -a KLayout designs/part1_alu/runs/RUN_.../results/final/gds/alu.gds

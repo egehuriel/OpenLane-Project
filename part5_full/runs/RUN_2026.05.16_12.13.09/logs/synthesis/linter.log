@@ -1,0 +1,28 @@
+%Warning-PINCONNECTEMPTY: /openlane/designs/part5_full/src/cpu_top.v:78:10: Cell pin connected by name with empty reference: 'data_out'
+   78 |         .data_out()
+      |          ^~~~~~~~
+                          ... For warning description see https://verilator.org/warn/PINCONNECTEMPTY?v=5.009
+                          ... Use "/* verilator lint_off PINCONNECTEMPTY */" and lint_on around source to disable this message.
+%Warning-UNUSEDSIGNAL: /openlane/designs/part5_full/src/full_system.v:14:6: Signal is not used: 'btn_pulse'
+                                                                          : ... In instance full_system
+   14 | wire btn_pulse;
+      |      ^~~~~~~~~
+%Warning-UNUSEDSIGNAL: /openlane/designs/part5_full/src/full_system.v:16:13: Signal is not used: 'pc_out'
+                                                                           : ... In instance full_system
+   16 | wire [15:0] pc_out;
+      |             ^~~~~~
+%Warning-UNUSEDSIGNAL: /openlane/designs/part5_full/src/cpu_top.v:19:17: Bits of signal are not used: 'reg_a_data'[15:8]
+                                                                       : ... In instance full_system.u_cpu
+   19 |     wire [15:0] reg_a_data, reg_b_data;
+      |                 ^~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /openlane/designs/part5_full/src/cpu_top.v:19:29: Bits of signal are not used: 'reg_b_data'[15:8]
+                                                                       : ... In instance full_system.u_cpu
+   19 |     wire [15:0] reg_a_data, reg_b_data;
+      |                             ^~~~~~~~~~
+%Warning-SYNCASYNCNET: /openlane/designs/part5_full/src/full_system.v:6:11: Signal flopped as both synchronous and async: 'rst'
+                       /openlane/designs/part5_full/src/debouncer.v:16:13: ... Location of async usage
+   16 |         if (rst) begin
+      |             ^~~
+                       /openlane/designs/part5_full/src/cpu_top.v:82:13: ... Location of sync usage
+   82 |         if (rst)
+      |             ^~~

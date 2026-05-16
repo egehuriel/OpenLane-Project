@@ -1,0 +1,17 @@
+%Warning-PINCONNECTEMPTY: /openlane/designs/part4_halfcpu/src/cpu_top.v:76:6: Cell pin connected by name with empty reference: 'data_out'
+   76 |     .data_out()
+      |      ^~~~~~~~
+                          ... For warning description see https://verilator.org/warn/PINCONNECTEMPTY?v=5.009
+                          ... Use "/* verilator lint_off PINCONNECTEMPTY */" and lint_on around source to disable this message.
+%Warning-UNDRIVEN: /openlane/designs/part4_halfcpu/src/cpu_top.v:7:17: Signal is not driven: 'result'
+                                                                     : ... In instance cpu_top
+    7 |     output[7:0] result,
+      |                 ^~~~~~
+%Warning-UNUSEDSIGNAL: /openlane/designs/part4_halfcpu/src/cpu_top.v:18:12: Bits of signal are not used: 'reg_a_data'[15:8]
+                                                                          : ... In instance cpu_top
+   18 | wire[15:0] reg_a_data, reg_b_data;
+      |            ^~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /openlane/designs/part4_halfcpu/src/cpu_top.v:18:24: Bits of signal are not used: 'reg_b_data'[15:8]
+                                                                          : ... In instance cpu_top
+   18 | wire[15:0] reg_a_data, reg_b_data;
+      |                        ^~~~~~~~~~

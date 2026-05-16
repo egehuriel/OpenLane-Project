@@ -1,0 +1,7 @@
+%Error: /openlane/designs/part2_alu_flags/src/alu_flags.v:21:1: syntax error, unexpected localparam, expecting ';'
+   21 | localparam OP_OR = 3'b101;
+      | ^~~~~~~~~~
+%Error: /openlane/designs/part2_alu_flags/src/alu_flags.v:39:59: syntax error, unexpected ')', expecting ';'
+   39 |             overflow = (A[7] == B[7]) && (temp[7] != A[7]));
+      |                                                           ^
+%Error: Exiting due to 2 error(s)

@@ -1,0 +1,28 @@
+%Warning-PINCONNECTEMPTY: /openlane/designs/part4_halfcpu/src/cpu_top.v:75:6: Cell pin connected by name with empty reference: 'data_out'
+   75 |     .data_out()
+      |      ^~~~~~~~
+                          ... For warning description see https://verilator.org/warn/PINCONNECTEMPTY?v=5.009
+                          ... Use "/* verilator lint_off PINCONNECTEMPTY */" and lint_on around source to disable this message.
+%Warning-IMPLICIT: /openlane/designs/part4_halfcpu/src/cpu_top.v:33:16: Signal definition not found, creating implicitly: 'instruction'
+   33 |     .data_out (instruction)
+      |                ^~~~~~~~~~~
+%Warning-WIDTHEXPAND: /openlane/designs/part4_halfcpu/src/cpu_top.v:33:6: Output port connection 'data_out' expects 16 bits on the pin connection, but pin connection's VARREF 'instruction' generates 1 bits.
+                                                                        : ... In instance cpu_top
+   33 |     .data_out (instruction)
+      |      ^~~~~~~~
+%Warning-WIDTHEXPAND: /openlane/designs/part4_halfcpu/src/cpu_top.v:37:6: Input port connection 'instruction' expects 16 bits on the pin connection, but pin connection's VARREF 'instruction' generates 1 bits.
+                                                                        : ... In instance cpu_top
+   37 |     .instruction(instruction),
+      |      ^~~~~~~~~~~
+%Warning-UNDRIVEN: /openlane/designs/part4_halfcpu/src/cpu_top.v:7:17: Signal is not driven: 'result'
+                                                                     : ... In instance cpu_top
+    7 |     output[7:0] result,
+      |                 ^~~~~~
+%Warning-UNUSEDSIGNAL: /openlane/designs/part4_halfcpu/src/cpu_top.v:17:12: Bits of signal are not used: 'reg_a_data'[15:8]
+                                                                          : ... In instance cpu_top
+   17 | wire[15:0] reg_a_data, reg_b_data;
+      |            ^~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /openlane/designs/part4_halfcpu/src/cpu_top.v:17:24: Bits of signal are not used: 'reg_b_data'[15:8]
+                                                                          : ... In instance cpu_top
+   17 | wire[15:0] reg_a_data, reg_b_data;
+      |                        ^~~~~~~~~~

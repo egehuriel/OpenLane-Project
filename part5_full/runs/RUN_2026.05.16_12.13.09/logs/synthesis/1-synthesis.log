@@ -1,0 +1,1544 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.30+48 (git sha1 14d50a176d5, gcc 8.3.1 -fPIC -Os)
+
+[TCL: yosys -import] Command name collision: found pre-existing command `cd' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `eval' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `exec' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `read' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `trace' -> skip.
+
+1. Executing Verilog-2005 frontend: /openlane/designs/part5_full/src/seven_seg.v
+Parsing SystemVerilog input from `/openlane/designs/part5_full/src/seven_seg.v' to AST representation.
+Generating RTLIL representation for module `\sevenseg_mux'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: /openlane/designs/part5_full/src/alu.v
+Parsing SystemVerilog input from `/openlane/designs/part5_full/src/alu.v' to AST representation.
+Generating RTLIL representation for module `\alu'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: /openlane/designs/part5_full/src/full_system.v
+Parsing SystemVerilog input from `/openlane/designs/part5_full/src/full_system.v' to AST representation.
+Generating RTLIL representation for module `\full_system'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: /openlane/designs/part5_full/src/decoder.v
+Parsing SystemVerilog input from `/openlane/designs/part5_full/src/decoder.v' to AST representation.
+Generating RTLIL representation for module `\decoder'.
+Successfully finished Verilog frontend.
+
+5. Executing Verilog-2005 frontend: /openlane/designs/part5_full/src/cpu_top.v
+Parsing SystemVerilog input from `/openlane/designs/part5_full/src/cpu_top.v' to AST representation.
+Generating RTLIL representation for module `\cpu_top'.
+Successfully finished Verilog frontend.
+
+6. Executing Verilog-2005 frontend: /openlane/designs/part5_full/src/register_file.v
+Parsing SystemVerilog input from `/openlane/designs/part5_full/src/register_file.v' to AST representation.
+Generating RTLIL representation for module `\register_file'.
+Successfully finished Verilog frontend.
+
+7. Executing Verilog-2005 frontend: /openlane/designs/part5_full/src/debouncer.v
+Parsing SystemVerilog input from `/openlane/designs/part5_full/src/debouncer.v' to AST representation.
+Generating RTLIL representation for module `\debounce'.
+Generating RTLIL representation for module `\one_pulse'.
+Successfully finished Verilog frontend.
+
+8. Generating Graphviz representation of design.
+Writing dot description to `/openlane/designs/part5_full/runs/RUN_2026.05.16_12.13.09/tmp/synthesis/hierarchy.dot'.
+Dumping module full_system to page 1.
+
+9. Executing HIERARCHY pass (managing design hierarchy).
+
+9.1. Analyzing design hierarchy..
+Top module:  \full_system
+Used module:     \sevenseg_mux
+Used module:     \cpu_top
+Used module:         \register_file
+Used module:         \alu
+Used module:         \decoder
+Used module:     \one_pulse
+Used module:     \debounce
+Parameter \CLKDIV = 5000
+
+9.2. Executing AST frontend in derive mode using pre-parsed AST for module `\sevenseg_mux'.
+Parameter \CLKDIV = 5000
+Generating RTLIL representation for module `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000'.
+Parameter \COUNT_MAX = 100000
+
+9.3. Executing AST frontend in derive mode using pre-parsed AST for module `\debounce'.
+Parameter \COUNT_MAX = 100000
+Generating RTLIL representation for module `$paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000'.
+
+9.4. Analyzing design hierarchy..
+Top module:  \full_system
+Used module:     $paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000
+Used module:     \cpu_top
+Used module:         \register_file
+Used module:         \alu
+Used module:         \decoder
+Used module:     \one_pulse
+Used module:     $paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000
+
+9.5. Analyzing design hierarchy..
+Top module:  \full_system
+Used module:     $paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000
+Used module:     \cpu_top
+Used module:         \register_file
+Used module:         \alu
+Used module:         \decoder
+Used module:     \one_pulse
+Used module:     $paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000
+Removing unused module `\debounce'.
+Removing unused module `\sevenseg_mux'.
+Removed 2 unused modules.
+
+10. Executing TRIBUF pass.
+
+11. Executing HIERARCHY pass (managing design hierarchy).
+
+11.1. Analyzing design hierarchy..
+Top module:  \full_system
+Used module:     $paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000
+Used module:     \cpu_top
+Used module:         \register_file
+Used module:         \alu
+Used module:         \decoder
+Used module:     \one_pulse
+Used module:     $paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000
+
+11.2. Analyzing design hierarchy..
+Top module:  \full_system
+Used module:     $paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000
+Used module:     \cpu_top
+Used module:         \register_file
+Used module:         \alu
+Used module:         \decoder
+Used module:     \one_pulse
+Used module:     $paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000
+Removed 0 unused modules.
+
+12. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+13. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$/openlane/designs/part5_full/src/debouncer.v:46$101 in module one_pulse.
+Marked 3 switch rules as full_case in process $proc$/openlane/designs/part5_full/src/debouncer.v:15$126 in module $paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000.
+Marked 2 switch rules as full_case in process $proc$/openlane/designs/part5_full/src/register_file.v:16$54 in module register_file.
+Marked 1 switch rules as full_case in process $proc$/openlane/designs/part5_full/src/cpu_top.v:81$33 in module cpu_top.
+Removed 1 dead cases from process $proc$/openlane/designs/part5_full/src/alu.v:20$23 in module alu.
+Marked 1 switch rules as full_case in process $proc$/openlane/designs/part5_full/src/alu.v:20$23 in module alu.
+Removed 1 dead cases from process $proc$/openlane/designs/part5_full/src/seven_seg.v:47$125 in module $paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.
+Marked 1 switch rules as full_case in process $proc$/openlane/designs/part5_full/src/seven_seg.v:47$125 in module $paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.
+Removed 1 dead cases from process $proc$/openlane/designs/part5_full/src/seven_seg.v:34$111 in module $paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.
+Marked 1 switch rules as full_case in process $proc$/openlane/designs/part5_full/src/seven_seg.v:34$111 in module $paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.
+Marked 2 switch rules as full_case in process $proc$/openlane/designs/part5_full/src/seven_seg.v:20$107 in module $paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.
+Removed a total of 3 dead cases.
+
+14. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 6 redundant assignments.
+Promoted 27 assignments to connections.
+
+15. Executing PROC_INIT pass (extract init attributes).
+
+16. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst in `\one_pulse.$proc$/openlane/designs/part5_full/src/debouncer.v:46$101'.
+Found async reset \rst in `$paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000.$proc$/openlane/designs/part5_full/src/debouncer.v:15$126'.
+Found async reset \rst in `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:20$107'.
+
+17. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 1 switch.
+<suppressed ~9 debug messages>
+
+18. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\one_pulse.$proc$/openlane/designs/part5_full/src/debouncer.v:46$101'.
+     1/2: $0\sig_d[0:0]
+     2/2: $0\pulse[0:0]
+Creating decoders for process `$paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000.$proc$/openlane/designs/part5_full/src/debouncer.v:15$126'.
+     1/4: $0\count[16:0]
+     2/4: $0\sync1[0:0]
+     3/4: $0\sync0[0:0]
+     4/4: $0\btn_out[0:0]
+Creating decoders for process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+     1/23: $2$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_EN[15:0]$95
+     2/23: $2$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_DATA[15:0]$94
+     3/23: $2$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_ADDR[3:0]$93
+     4/23: $1\i[31:0]
+     5/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$89
+     6/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$88
+     7/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$87
+     8/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$86
+     9/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$85
+    10/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$84
+    11/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$83
+    12/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$82
+    13/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$81
+    14/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$80
+    15/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$79
+    16/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$78
+    17/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$77
+    18/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$76
+    19/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$75
+    20/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$74
+    21/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_EN[15:0]$92
+    22/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_DATA[15:0]$91
+    23/23: $1$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_ADDR[3:0]$90
+Creating decoders for process `\cpu_top.$proc$/openlane/designs/part5_full/src/cpu_top.v:81$33'.
+     1/1: $0\pc[15:0]
+Creating decoders for process `\alu.$proc$/openlane/designs/part5_full/src/alu.v:20$23'.
+     1/1: $1\Y[7:0]
+Creating decoders for process `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:47$125'.
+     1/1: $1\seg[6:0]
+Creating decoders for process `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:42$112'.
+Creating decoders for process `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:34$111'.
+     1/1: $1\nibble[3:0]
+Creating decoders for process `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:20$107'.
+     1/2: $0\refresh_count[12:0]
+     2/2: $0\digit_sel[0:0]
+
+19. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\alu.\Y' from process `\alu.$proc$/openlane/designs/part5_full/src/alu.v:20$23'.
+No latch inferred for signal `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.\seg' from process `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:47$125'.
+No latch inferred for signal `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.\an' from process `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:42$112'.
+No latch inferred for signal `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$bitselwrite$mask$/openlane/designs/part5_full/src/seven_seg.v:44$104' from process `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:42$112'.
+No latch inferred for signal `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$bitselwrite$data$/openlane/designs/part5_full/src/seven_seg.v:44$105' from process `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:42$112'.
+No latch inferred for signal `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$bitselwrite$sel$/openlane/designs/part5_full/src/seven_seg.v:44$106' from process `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:42$112'.
+No latch inferred for signal `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.\nibble' from process `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:34$111'.
+
+20. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\one_pulse.\pulse' using process `\one_pulse.$proc$/openlane/designs/part5_full/src/debouncer.v:46$101'.
+  created $adff cell `$procdff$248' with positive edge clock and positive level reset.
+Creating register for signal `\one_pulse.\sig_d' using process `\one_pulse.$proc$/openlane/designs/part5_full/src/debouncer.v:46$101'.
+  created $adff cell `$procdff$249' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000.\btn_out' using process `$paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000.$proc$/openlane/designs/part5_full/src/debouncer.v:15$126'.
+  created $adff cell `$procdff$250' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000.\sync0' using process `$paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000.$proc$/openlane/designs/part5_full/src/debouncer.v:15$126'.
+  created $adff cell `$procdff$251' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000.\sync1' using process `$paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000.$proc$/openlane/designs/part5_full/src/debouncer.v:15$126'.
+  created $adff cell `$procdff$252' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000.\count' using process `$paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000.$proc$/openlane/designs/part5_full/src/debouncer.v:15$126'.
+  created $adff cell `$procdff$253' with positive edge clock and positive level reset.
+Creating register for signal `\register_file.\i' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$254' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$255' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$256' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$257' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$258' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$259' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$260' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$261' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$262' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$263' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$264' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$265' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$266' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$267' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$268' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$269' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$270' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_ADDR' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$271' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_DATA' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$272' with positive edge clock.
+Creating register for signal `\register_file.$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_EN' using process `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+  created $dff cell `$procdff$273' with positive edge clock.
+Creating register for signal `\cpu_top.\pc' using process `\cpu_top.$proc$/openlane/designs/part5_full/src/cpu_top.v:81$33'.
+  created $dff cell `$procdff$274' with positive edge clock.
+Creating register for signal `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.\refresh_count' using process `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:20$107'.
+  created $adff cell `$procdff$275' with positive edge clock and positive level reset.
+Creating register for signal `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.\digit_sel' using process `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:20$107'.
+  created $adff cell `$procdff$276' with positive edge clock and positive level reset.
+
+21. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+22. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `one_pulse.$proc$/openlane/designs/part5_full/src/debouncer.v:46$101'.
+Found and cleaned up 2 empty switches in `$paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000.$proc$/openlane/designs/part5_full/src/debouncer.v:15$126'.
+Removing empty process `$paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000.$proc$/openlane/designs/part5_full/src/debouncer.v:15$126'.
+Found and cleaned up 2 empty switches in `\register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+Removing empty process `register_file.$proc$/openlane/designs/part5_full/src/register_file.v:16$54'.
+Found and cleaned up 2 empty switches in `\cpu_top.$proc$/openlane/designs/part5_full/src/cpu_top.v:81$33'.
+Removing empty process `cpu_top.$proc$/openlane/designs/part5_full/src/cpu_top.v:81$33'.
+Found and cleaned up 1 empty switch in `\alu.$proc$/openlane/designs/part5_full/src/alu.v:20$23'.
+Removing empty process `alu.$proc$/openlane/designs/part5_full/src/alu.v:20$23'.
+Found and cleaned up 1 empty switch in `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:47$125'.
+Removing empty process `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:47$125'.
+Removing empty process `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:42$112'.
+Found and cleaned up 1 empty switch in `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:34$111'.
+Removing empty process `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:34$111'.
+Found and cleaned up 1 empty switch in `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:20$107'.
+Removing empty process `$paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.$proc$/openlane/designs/part5_full/src/seven_seg.v:20$107'.
+Cleaned up 10 empty switches.
+
+23. Executing CHECK pass (checking for obvious problems).
+Checking module one_pulse...
+Checking module $paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000...
+Checking module register_file...
+Checking module cpu_top...
+Checking module decoder...
+Checking module full_system...
+Checking module alu...
+Checking module $paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000...
+Found and reported 0 problems.
+
+24. Executing OPT_EXPR pass (perform const folding).
+Optimizing module one_pulse.
+Optimizing module $paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000.
+Optimizing module register_file.
+Optimizing module cpu_top.
+Optimizing module decoder.
+Optimizing module full_system.
+Optimizing module alu.
+<suppressed ~3 debug messages>
+Optimizing module $paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.
+<suppressed ~4 debug messages>
+
+25. Executing FLATTEN pass (flatten design).
+Deleting now unused module one_pulse.
+Deleting now unused module $paramod\debounce\COUNT_MAX=s32'00000000000000011000011010100000.
+Deleting now unused module register_file.
+Deleting now unused module cpu_top.
+Deleting now unused module decoder.
+Deleting now unused module alu.
+Deleting now unused module $paramod\sevenseg_mux\CLKDIV=s32'00000000000000000001001110001000.
+<suppressed ~10 debug messages>
+
+26. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+<suppressed ~21 debug messages>
+
+27. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+Removed 143 unused cells and 467 unused wires.
+<suppressed ~158 debug messages>
+
+28. Executing OPT pass (performing simple optimizations).
+
+28.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+
+28.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\full_system'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+28.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \full_system..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $flatten\u_cpu.\instr_mem.$procmux$150.
+    dead port 1/2 on $mux $flatten\u_cpu.\reg_file_a.$procmux$150.
+    dead port 1/2 on $mux $flatten\u_cpu.\reg_file_b.$procmux$150.
+Removed 3 multiplexer ports.
+<suppressed ~55 debug messages>
+
+28.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \full_system.
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$168:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0]
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [15:1] = { $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$171:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0]
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [15:1] = { $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$174:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0]
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [15:1] = { $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$177:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0]
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [15:1] = { $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$180:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0]
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [15:1] = { $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$183:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0]
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [15:1] = { $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$186:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0]
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [15:1] = { $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$189:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0]
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [15:1] = { $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$192:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0]
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [15:1] = { $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$195:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0]
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [15:1] = { $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$198:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0]
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [15:1] = { $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$201:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0]
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [15:1] = { $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$204:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0]
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [15:1] = { $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$207:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0]
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [15:1] = { $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$210:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0]
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [15:1] = { $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$213:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0]
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [15:1] = { $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\instr_mem.$procmux$216:
+      Old ports: A=$flatten\u_cpu.\instr_mem.$2$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_EN[15:0]$95, B=16'0000000000000000, Y=$flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_EN[15:0]$73
+      New connections: $flatten\u_cpu.\instr_mem.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_EN[15:0]$73 = 16'0000000000000000
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$168:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0]
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [15:1] = { $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$171:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0]
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [15:1] = { $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$174:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0]
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [15:1] = { $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$177:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0]
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [15:1] = { $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$180:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0]
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [15:1] = { $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$183:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0]
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [15:1] = { $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$186:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0]
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [15:1] = { $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$189:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0]
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [15:1] = { $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$192:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0]
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [15:1] = { $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$195:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0]
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [15:1] = { $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$198:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0]
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [15:1] = { $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$201:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0]
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [15:1] = { $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$204:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0]
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [15:1] = { $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$207:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0]
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [15:1] = { $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$210:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0]
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [15:1] = { $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$213:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0]
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [15:1] = { $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_a.$procmux$216:
+      Old ports: A=$flatten\u_cpu.\reg_file_a.$2$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_EN[15:0]$95, B=16'0000000000000000, Y=$flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_EN[15:0]$73
+      New connections: $flatten\u_cpu.\reg_file_a.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_EN[15:0]$73 = 16'0000000000000000
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$168:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0]
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [15:1] = { $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$52_EN[15:0]$70 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$171:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0]
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [15:1] = { $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$51_EN[15:0]$69 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$174:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0]
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [15:1] = { $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$50_EN[15:0]$68 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$177:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0]
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [15:1] = { $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$49_EN[15:0]$67 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$180:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0]
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [15:1] = { $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$48_EN[15:0]$66 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$183:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0]
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [15:1] = { $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$47_EN[15:0]$65 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$186:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0]
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [15:1] = { $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$46_EN[15:0]$64 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$189:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0]
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [15:1] = { $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$45_EN[15:0]$63 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$192:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0]
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [15:1] = { $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$44_EN[15:0]$62 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$195:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0]
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [15:1] = { $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$43_EN[15:0]$61 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$198:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0]
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [15:1] = { $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$42_EN[15:0]$60 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$201:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0]
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [15:1] = { $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$41_EN[15:0]$59 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$204:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0]
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [15:1] = { $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$40_EN[15:0]$58 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$207:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0]
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [15:1] = { $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$39_EN[15:0]$57 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$210:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0]
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [15:1] = { $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$38_EN[15:0]$56 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$213:
+      Old ports: A=16'0000000000000000, B=16'1111111111111111, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55
+      New ports: A=1'0, B=1'1, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0]
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [15:1] = { $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:19$37_EN[15:0]$55 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_cpu.\reg_file_b.$procmux$216:
+      Old ports: A=$flatten\u_cpu.\reg_file_b.$2$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_EN[15:0]$95, B=16'0000000000000000, Y=$flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_EN[15:0]$73
+      New connections: $flatten\u_cpu.\reg_file_b.$0$memwr$\regs$/openlane/designs/part5_full/src/register_file.v:21$53_EN[15:0]$73 = 16'0000000000000000
+  Optimizing cells in module \full_system.
+Performed a total of 51 changes.
+
+28.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\full_system'.
+<suppressed ~141 debug messages>
+Removed a total of 47 cells.
+
+28.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+28.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+Removed 0 unused cells and 56 unused wires.
+<suppressed ~3 debug messages>
+
+28.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+
+28.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+28.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \full_system..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~5 debug messages>
+
+28.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \full_system.
+Performed a total of 0 changes.
+
+28.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\full_system'.
+Removed a total of 0 cells.
+
+28.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+28.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+
+28.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+
+28.16. Finished OPT passes. (There is nothing left to do.)
+
+29. Executing FSM pass (extract and optimize FSM).
+
+29.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+29.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+29.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+29.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+
+29.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+29.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+29.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+29.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+30. Executing OPT pass (performing simple optimizations).
+
+30.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+
+30.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\full_system'.
+Removed a total of 0 cells.
+
+30.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \full_system..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~5 debug messages>
+
+30.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \full_system.
+Performed a total of 0 changes.
+
+30.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\full_system'.
+Removed a total of 0 cells.
+
+30.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $flatten\u_sevenseg.$procdff$276 ($adff) from module full_system (D = $flatten\u_sevenseg.$add$/openlane/designs/part5_full/src/seven_seg.v:27$109_Y, Q = \u_sevenseg.digit_sel).
+Adding SRST signal on $flatten\u_cpu.$procdff$274 ($dff) from module full_system (D = $flatten\u_cpu.$procmux$224_Y, Q = \u_cpu.pc, rval = 16'0000000000000000).
+Adding EN signal on $auto$ff.cc:266:slice$295 ($sdff) from module full_system (D = $flatten\u_cpu.$add$/openlane/designs/part5_full/src/cpu_top.v:85$35_Y, Q = \u_cpu.pc).
+
+30.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+Removed 3 unused cells and 3 unused wires.
+<suppressed ~4 debug messages>
+
+30.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+
+30.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+30.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \full_system..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~3 debug messages>
+
+30.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \full_system.
+Performed a total of 0 changes.
+
+30.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\full_system'.
+Removed a total of 0 cells.
+
+30.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+30.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+
+30.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+
+30.16. Finished OPT passes. (There is nothing left to do.)
+
+31. Executing WREDUCE pass (reducing word size of cells).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\instr_mem.$auto$proc_memwr.cc:45:proc_memwr$277 (u_cpu.instr_mem.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\instr_mem.$auto$proc_memwr.cc:45:proc_memwr$278 (u_cpu.instr_mem.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\instr_mem.$auto$proc_memwr.cc:45:proc_memwr$279 (u_cpu.instr_mem.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\instr_mem.$auto$proc_memwr.cc:45:proc_memwr$280 (u_cpu.instr_mem.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\instr_mem.$auto$proc_memwr.cc:45:proc_memwr$281 (u_cpu.instr_mem.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\instr_mem.$auto$proc_memwr.cc:45:proc_memwr$282 (u_cpu.instr_mem.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\instr_mem.$auto$proc_memwr.cc:45:proc_memwr$283 (u_cpu.instr_mem.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\instr_mem.$auto$proc_memwr.cc:45:proc_memwr$284 (u_cpu.instr_mem.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\instr_mem.$auto$proc_memwr.cc:45:proc_memwr$285 (u_cpu.instr_mem.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\instr_mem.$auto$proc_memwr.cc:45:proc_memwr$286 (u_cpu.instr_mem.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\instr_mem.$auto$proc_memwr.cc:45:proc_memwr$287 (u_cpu.instr_mem.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\instr_mem.$auto$proc_memwr.cc:45:proc_memwr$288 (u_cpu.instr_mem.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\instr_mem.$auto$proc_memwr.cc:45:proc_memwr$289 (u_cpu.instr_mem.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\instr_mem.$auto$proc_memwr.cc:45:proc_memwr$290 (u_cpu.instr_mem.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\instr_mem.$auto$proc_memwr.cc:45:proc_memwr$291 (u_cpu.instr_mem.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\instr_mem.$auto$proc_memwr.cc:45:proc_memwr$292 (u_cpu.instr_mem.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_a.$auto$proc_memwr.cc:45:proc_memwr$277 (u_cpu.reg_file_a.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_a.$auto$proc_memwr.cc:45:proc_memwr$278 (u_cpu.reg_file_a.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_a.$auto$proc_memwr.cc:45:proc_memwr$279 (u_cpu.reg_file_a.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_a.$auto$proc_memwr.cc:45:proc_memwr$280 (u_cpu.reg_file_a.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_a.$auto$proc_memwr.cc:45:proc_memwr$281 (u_cpu.reg_file_a.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_a.$auto$proc_memwr.cc:45:proc_memwr$282 (u_cpu.reg_file_a.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_a.$auto$proc_memwr.cc:45:proc_memwr$283 (u_cpu.reg_file_a.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_a.$auto$proc_memwr.cc:45:proc_memwr$284 (u_cpu.reg_file_a.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_a.$auto$proc_memwr.cc:45:proc_memwr$285 (u_cpu.reg_file_a.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_a.$auto$proc_memwr.cc:45:proc_memwr$286 (u_cpu.reg_file_a.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_a.$auto$proc_memwr.cc:45:proc_memwr$287 (u_cpu.reg_file_a.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_a.$auto$proc_memwr.cc:45:proc_memwr$288 (u_cpu.reg_file_a.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_a.$auto$proc_memwr.cc:45:proc_memwr$289 (u_cpu.reg_file_a.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_a.$auto$proc_memwr.cc:45:proc_memwr$290 (u_cpu.reg_file_a.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_a.$auto$proc_memwr.cc:45:proc_memwr$291 (u_cpu.reg_file_a.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_a.$auto$proc_memwr.cc:45:proc_memwr$292 (u_cpu.reg_file_a.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_b.$auto$proc_memwr.cc:45:proc_memwr$277 (u_cpu.reg_file_b.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_b.$auto$proc_memwr.cc:45:proc_memwr$278 (u_cpu.reg_file_b.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_b.$auto$proc_memwr.cc:45:proc_memwr$279 (u_cpu.reg_file_b.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_b.$auto$proc_memwr.cc:45:proc_memwr$280 (u_cpu.reg_file_b.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_b.$auto$proc_memwr.cc:45:proc_memwr$281 (u_cpu.reg_file_b.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_b.$auto$proc_memwr.cc:45:proc_memwr$282 (u_cpu.reg_file_b.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_b.$auto$proc_memwr.cc:45:proc_memwr$283 (u_cpu.reg_file_b.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_b.$auto$proc_memwr.cc:45:proc_memwr$284 (u_cpu.reg_file_b.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_b.$auto$proc_memwr.cc:45:proc_memwr$285 (u_cpu.reg_file_b.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_b.$auto$proc_memwr.cc:45:proc_memwr$286 (u_cpu.reg_file_b.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_b.$auto$proc_memwr.cc:45:proc_memwr$287 (u_cpu.reg_file_b.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_b.$auto$proc_memwr.cc:45:proc_memwr$288 (u_cpu.reg_file_b.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_b.$auto$proc_memwr.cc:45:proc_memwr$289 (u_cpu.reg_file_b.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_b.$auto$proc_memwr.cc:45:proc_memwr$290 (u_cpu.reg_file_b.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_b.$auto$proc_memwr.cc:45:proc_memwr$291 (u_cpu.reg_file_b.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_cpu.\reg_file_b.$auto$proc_memwr.cc:45:proc_memwr$292 (u_cpu.reg_file_b.regs).
+Removed top 28 address bits (of 32) from memory init port full_system.$flatten\u_sevenseg.$auto$mem.cc:319:emit$133 ($flatten\u_sevenseg.$auto$proc_rom.cc:150:do_switch$131).
+Removed top 2 bits (of 3) from port B of cell full_system.$flatten\u_cpu.\alu_inst.$procmux$236_CMP0 ($eq).
+Removed top 1 bits (of 3) from port B of cell full_system.$flatten\u_cpu.\alu_inst.$procmux$234_CMP0 ($eq).
+Removed top 1 bits (of 3) from port B of cell full_system.$flatten\u_cpu.\alu_inst.$procmux$235_CMP0 ($eq).
+Removed top 15 bits (of 16) from port B of cell full_system.$flatten\u_cpu.$add$/openlane/designs/part5_full/src/cpu_top.v:85$35 ($add).
+Removed top 30 bits (of 32) from port A of cell full_system.$flatten\u_sevenseg.$neg$/openlane/designs/part5_full/src/seven_seg.v:0$117 ($neg).
+Converting cell full_system.$flatten\u_sevenseg.$neg$/openlane/designs/part5_full/src/seven_seg.v:0$117 ($neg) from signed to unsigned.
+Removed top 1 bits (of 2) from port A of cell full_system.$flatten\u_sevenseg.$neg$/openlane/designs/part5_full/src/seven_seg.v:0$117 ($neg).
+
+32. Executing PEEPOPT pass (run peephole optimizers).
+
+33. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+
+34. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module full_system:
+  creating $macc model for $flatten\u_cpu.$add$/openlane/designs/part5_full/src/cpu_top.v:85$35 ($add).
+  creating $macc model for $flatten\u_cpu.\alu_inst.$add$/openlane/designs/part5_full/src/alu.v:22$24 ($add).
+  creating $macc model for $flatten\u_cpu.\alu_inst.$sub$/openlane/designs/part5_full/src/alu.v:23$25 ($sub).
+  creating $macc model for $flatten\u_sevenseg.$add$/openlane/designs/part5_full/src/seven_seg.v:27$109 ($add).
+  creating $macc model for $flatten\u_sevenseg.$add$/openlane/designs/part5_full/src/seven_seg.v:29$110 ($add).
+  creating $macc model for $flatten\u_sevenseg.$neg$/openlane/designs/part5_full/src/seven_seg.v:0$117 ($neg).
+  creating $alu model for $macc $flatten\u_sevenseg.$neg$/openlane/designs/part5_full/src/seven_seg.v:0$117.
+  creating $alu model for $macc $flatten\u_sevenseg.$add$/openlane/designs/part5_full/src/seven_seg.v:29$110.
+  creating $alu model for $macc $flatten\u_sevenseg.$add$/openlane/designs/part5_full/src/seven_seg.v:27$109.
+  creating $alu model for $macc $flatten\u_cpu.\alu_inst.$sub$/openlane/designs/part5_full/src/alu.v:23$25.
+  creating $alu model for $macc $flatten\u_cpu.\alu_inst.$add$/openlane/designs/part5_full/src/alu.v:22$24.
+  creating $alu model for $macc $flatten\u_cpu.$add$/openlane/designs/part5_full/src/cpu_top.v:85$35.
+  creating $alu cell for $flatten\u_cpu.$add$/openlane/designs/part5_full/src/cpu_top.v:85$35: $auto$alumacc.cc:485:replace_alu$297
+  creating $alu cell for $flatten\u_cpu.\alu_inst.$add$/openlane/designs/part5_full/src/alu.v:22$24: $auto$alumacc.cc:485:replace_alu$300
+  creating $alu cell for $flatten\u_cpu.\alu_inst.$sub$/openlane/designs/part5_full/src/alu.v:23$25: $auto$alumacc.cc:485:replace_alu$303
+  creating $alu cell for $flatten\u_sevenseg.$add$/openlane/designs/part5_full/src/seven_seg.v:27$109: $auto$alumacc.cc:485:replace_alu$306
+  creating $alu cell for $flatten\u_sevenseg.$add$/openlane/designs/part5_full/src/seven_seg.v:29$110: $auto$alumacc.cc:485:replace_alu$309
+  creating $alu cell for $flatten\u_sevenseg.$neg$/openlane/designs/part5_full/src/seven_seg.v:0$117: $auto$alumacc.cc:485:replace_alu$312
+  created 6 $alu and 0 $macc cells.
+
+35. Executing SHARE pass (SAT-based resource sharing).
+Found 2 cells in module full_system that may be considered for resource sharing.
+  Analyzing resource sharing options for $flatten\u_cpu.\reg_file_b.$memrd$\regs$/openlane/designs/part5_full/src/register_file.v:25$96 ($memrd):
+    Found 10 activation_patterns using ctrl signal { \u_sevenseg.digit_sel $flatten\u_sevenseg.$procmux$241_CMP $flatten\u_cpu.\alu_inst.$procmux$237_CMP $flatten\u_cpu.\alu_inst.$procmux$236_CMP $flatten\u_cpu.\alu_inst.$procmux$233_CMP $flatten\u_cpu.\alu_inst.$procmux$232_CMP $flatten\u_cpu.\alu_inst.$procmux$230_CMP }.
+    No candidates found.
+  Analyzing resource sharing options for $flatten\u_cpu.\reg_file_a.$memrd$\regs$/openlane/designs/part5_full/src/register_file.v:25$96 ($memrd):
+    Found 16 activation_patterns using ctrl signal { \u_sevenseg.digit_sel $flatten\u_sevenseg.$procmux$241_CMP $flatten\u_cpu.\alu_inst.$procmux$237_CMP $flatten\u_cpu.\alu_inst.$procmux$236_CMP $flatten\u_cpu.\alu_inst.$procmux$235_CMP $flatten\u_cpu.\alu_inst.$procmux$234_CMP $flatten\u_cpu.\alu_inst.$procmux$233_CMP $flatten\u_cpu.\alu_inst.$procmux$232_CMP $flatten\u_cpu.\alu_inst.$procmux$231_CMP $flatten\u_cpu.\alu_inst.$procmux$230_CMP }.
+    No candidates found.
+
+36. Executing OPT pass (performing simple optimizations).
+
+36.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+
+36.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\full_system'.
+Removed a total of 0 cells.
+
+36.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \full_system..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~3 debug messages>
+
+36.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \full_system.
+Performed a total of 0 changes.
+
+36.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\full_system'.
+Removed a total of 0 cells.
+
+36.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+36.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+
+36.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+
+36.9. Finished OPT passes. (There is nothing left to do.)
+
+37. Executing MEMORY pass.
+
+37.1. Executing OPT_MEM pass (optimize memories).
+full_system.u_cpu.instr_mem.regs: removing const-0 lane 0
+full_system.u_cpu.instr_mem.regs: removing const-0 lane 1
+full_system.u_cpu.instr_mem.regs: removing const-0 lane 2
+full_system.u_cpu.instr_mem.regs: removing const-0 lane 3
+full_system.u_cpu.instr_mem.regs: removing const-0 lane 4
+full_system.u_cpu.instr_mem.regs: removing const-0 lane 5
+full_system.u_cpu.instr_mem.regs: removing const-0 lane 6
+full_system.u_cpu.instr_mem.regs: removing const-0 lane 7
+full_system.u_cpu.instr_mem.regs: removing const-0 lane 8
+full_system.u_cpu.instr_mem.regs: removing const-0 lane 9
+full_system.u_cpu.instr_mem.regs: removing const-0 lane 10
+full_system.u_cpu.instr_mem.regs: removing const-0 lane 11
+full_system.u_cpu.instr_mem.regs: removing const-0 lane 12
+full_system.u_cpu.instr_mem.regs: removing const-0 lane 13
+full_system.u_cpu.instr_mem.regs: removing const-0 lane 14
+full_system.u_cpu.instr_mem.regs: removing const-0 lane 15
+full_system.u_cpu.reg_file_a.regs: removing const-0 lane 0
+full_system.u_cpu.reg_file_a.regs: removing const-0 lane 1
+full_system.u_cpu.reg_file_a.regs: removing const-0 lane 2
+full_system.u_cpu.reg_file_a.regs: removing const-0 lane 3
+full_system.u_cpu.reg_file_a.regs: removing const-0 lane 4
+full_system.u_cpu.reg_file_a.regs: removing const-0 lane 5
+full_system.u_cpu.reg_file_a.regs: removing const-0 lane 6
+full_system.u_cpu.reg_file_a.regs: removing const-0 lane 7
+full_system.u_cpu.reg_file_a.regs: removing const-0 lane 8
+full_system.u_cpu.reg_file_a.regs: removing const-0 lane 9
+full_system.u_cpu.reg_file_a.regs: removing const-0 lane 10
+full_system.u_cpu.reg_file_a.regs: removing const-0 lane 11
+full_system.u_cpu.reg_file_a.regs: removing const-0 lane 12
+full_system.u_cpu.reg_file_a.regs: removing const-0 lane 13
+full_system.u_cpu.reg_file_a.regs: removing const-0 lane 14
+full_system.u_cpu.reg_file_a.regs: removing const-0 lane 15
+full_system.u_cpu.reg_file_b.regs: removing const-0 lane 0
+full_system.u_cpu.reg_file_b.regs: removing const-0 lane 1
+full_system.u_cpu.reg_file_b.regs: removing const-0 lane 2
+full_system.u_cpu.reg_file_b.regs: removing const-0 lane 3
+full_system.u_cpu.reg_file_b.regs: removing const-0 lane 4
+full_system.u_cpu.reg_file_b.regs: removing const-0 lane 5
+full_system.u_cpu.reg_file_b.regs: removing const-0 lane 6
+full_system.u_cpu.reg_file_b.regs: removing const-0 lane 7
+full_system.u_cpu.reg_file_b.regs: removing const-0 lane 8
+full_system.u_cpu.reg_file_b.regs: removing const-0 lane 9
+full_system.u_cpu.reg_file_b.regs: removing const-0 lane 10
+full_system.u_cpu.reg_file_b.regs: removing const-0 lane 11
+full_system.u_cpu.reg_file_b.regs: removing const-0 lane 12
+full_system.u_cpu.reg_file_b.regs: removing const-0 lane 13
+full_system.u_cpu.reg_file_b.regs: removing const-0 lane 14
+full_system.u_cpu.reg_file_b.regs: removing const-0 lane 15
+Performed a total of 6 transformations.
+
+37.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+37.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+37.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+37.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+Checking read port `$flatten\u_sevenseg.$auto$proc_rom.cc:150:do_switch$131'[0] in module `\full_system': no output FF found.
+Checking read port address `$flatten\u_sevenseg.$auto$proc_rom.cc:150:do_switch$131'[0] in module `\full_system': no address FF found.
+
+37.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+Removed 4 unused cells and 5 unused wires.
+<suppressed ~5 debug messages>
+
+37.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+37.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+37.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+
+37.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+38. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+
+39. Executing OPT pass (performing simple optimizations).
+
+39.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+<suppressed ~61 debug messages>
+
+39.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\full_system'.
+Removed a total of 0 cells.
+
+39.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+39.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+Removed 1 unused cells and 32 unused wires.
+<suppressed ~2 debug messages>
+
+39.5. Finished fast OPT passes.
+
+40. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+Mapping memory $flatten\u_sevenseg.$auto$proc_rom.cc:150:do_switch$131 in module \full_system:
+  created 16 $dff cells and 0 static cells of width 7.
+  read interface: 0 $dff and 15 $mux cells.
+  write interface: 0 write mux blocks.
+
+41. Executing OPT pass (performing simple optimizations).
+
+41.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+<suppressed ~15 debug messages>
+
+41.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\full_system'.
+Removed a total of 0 cells.
+
+41.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \full_system..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~1 debug messages>
+
+41.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \full_system.
+Performed a total of 0 changes.
+
+41.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\full_system'.
+Removed a total of 0 cells.
+
+41.6. Executing OPT_SHARE pass.
+
+41.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+41.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+Removed 0 unused cells and 30 unused wires.
+<suppressed ~1 debug messages>
+
+41.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+
+41.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+41.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \full_system..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~1 debug messages>
+
+41.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \full_system.
+Performed a total of 0 changes.
+
+41.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\full_system'.
+Removed a total of 0 cells.
+
+41.14. Executing OPT_SHARE pass.
+
+41.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+41.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+
+41.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+
+41.18. Finished OPT passes. (There is nothing left to do.)
+
+42. Executing TECHMAP pass (map to technology primitives).
+
+42.1. Executing Verilog-2005 frontend: /build/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/build/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+42.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $adffe.
+Using template $paramod$fc972a7a46956c1788f3cb5257b53c8f1df2d0cc\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $adff.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $not.
+Using template $paramod$1bd36706f1a7d45f895b4092e58acf8aa3de2db6\_90_alu for cells of type $alu.
+Using template $paramod$constmap:5cb52ebae8c7eb0657c249e154008694b1ffc2d5$paramod$41a8fd742b837fb82ab05575fc618cfc4f544228\_90_shift_shiftx for cells of type $shift.
+Analyzing pattern of constant bits for this cell:
+  Constant input on bit 0 of port A: 1'1
+Creating constmapped module `$paramod$constmap:6cbb036f9c3277f3c4e4ee63602f245cfae168d8$paramod$41a8fd742b837fb82ab05575fc618cfc4f544228\_90_shift_shiftx'.
+
+42.12. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$constmap:6cbb036f9c3277f3c4e4ee63602f245cfae168d8$paramod$41a8fd742b837fb82ab05575fc618cfc4f544228\_90_shift_shiftx..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$544.
+    dead port 2/2 on $mux $procmux$538.
+Removed 2 multiplexer ports.
+<suppressed ~343 debug messages>
+
+42.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$constmap:6cbb036f9c3277f3c4e4ee63602f245cfae168d8$paramod$41a8fd742b837fb82ab05575fc618cfc4f544228\_90_shift_shiftx.
+<suppressed ~31 debug messages>
+Removed 0 unused cells and 8 unused wires.
+Using template $paramod$constmap:6cbb036f9c3277f3c4e4ee63602f245cfae168d8$paramod$41a8fd742b837fb82ab05575fc618cfc4f544228\_90_shift_shiftx for cells of type $shift.
+Using template $paramod$215440792383f7884e57d9c95f84e9552d0bf4ac\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000001101 for cells of type $lcu.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $ne.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000001 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~659 debug messages>
+
+43. Executing OPT pass (performing simple optimizations).
+
+43.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+<suppressed ~511 debug messages>
+
+43.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\full_system'.
+<suppressed ~33 debug messages>
+Removed a total of 11 cells.
+
+43.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+43.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+Removed 12 unused cells and 356 unused wires.
+<suppressed ~13 debug messages>
+
+43.5. Finished fast OPT passes.
+
+44. Executing ABC pass (technology mapping using ABC).
+
+44.1. Extracting gate netlist of module `\full_system' to `<abc-temp-dir>/input.blif'..
+Extracted 69 gates and 84 wires to a netlist network with 14 inputs and 17 outputs.
+
+44.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+44.1.2. Re-integrating ABC results.
+ABC RESULTS:              XNOR cells:        1
+ABC RESULTS:             ORNOT cells:        7
+ABC RESULTS:              NAND cells:        6
+ABC RESULTS:                OR cells:       14
+ABC RESULTS:               NOR cells:        1
+ABC RESULTS:               XOR cells:       11
+ABC RESULTS:            ANDNOT cells:       13
+ABC RESULTS:               BUF cells:        1
+ABC RESULTS:               NOT cells:        3
+ABC RESULTS:        internal signals:       53
+ABC RESULTS:           input signals:       14
+ABC RESULTS:          output signals:       17
+Removing temp directory.
+
+45. Executing OPT pass (performing simple optimizations).
+
+45.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+
+45.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\full_system'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+45.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+45.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+Removed 0 unused cells and 41 unused wires.
+<suppressed ~1 debug messages>
+
+45.5. Finished fast OPT passes.
+
+46. Executing HIERARCHY pass (managing design hierarchy).
+
+46.1. Analyzing design hierarchy..
+Top module:  \full_system
+
+46.2. Analyzing design hierarchy..
+Top module:  \full_system
+Removed 0 unused modules.
+
+47. Printing statistics.
+
+=== full_system ===
+
+   Number of wires:                124
+   Number of wire bits:            452
+   Number of public wires:          70
+   Number of public wire bits:     398
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 69
+     $_ANDNOT_                      13
+     $_DFFE_PP0N_                    1
+     $_DFF_PP0_                     13
+     $_NAND_                         6
+     $_NOR_                          1
+     $_NOT_                          2
+     $_ORNOT_                        7
+     $_OR_                          14
+     $_XNOR_                         1
+     $_XOR_                         11
+
+48. Executing CHECK pass (checking for obvious problems).
+Checking module full_system...
+Found and reported 0 problems.
+
+49. Generating Graphviz representation of design.
+Writing dot description to `/openlane/designs/part5_full/runs/RUN_2026.05.16_12.13.09/tmp/synthesis/post_techmap.dot'.
+Dumping module full_system to page 1.
+
+50. Executing SHARE pass (SAT-based resource sharing).
+
+51. Executing OPT pass (performing simple optimizations).
+
+51.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+
+51.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\full_system'.
+Removed a total of 0 cells.
+
+51.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \full_system..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+51.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \full_system.
+Performed a total of 0 changes.
+
+51.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\full_system'.
+Removed a total of 0 cells.
+
+51.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+51.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+
+51.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module full_system.
+
+51.9. Finished OPT passes. (There is nothing left to do.)
+
+52. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+Removed 0 unused cells and 62 unused wires.
+<suppressed ~62 debug messages>
+
+53. Printing statistics.
+
+=== full_system ===
+
+   Number of wires:                 62
+   Number of wire bits:             81
+   Number of public wires:           8
+   Number of public wire bits:      27
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 69
+     $_ANDNOT_                      13
+     $_DFFE_PP0N_                    1
+     $_DFF_PP0_                     13
+     $_NAND_                         6
+     $_NOR_                          1
+     $_NOT_                          2
+     $_ORNOT_                        7
+     $_OR_                          14
+     $_XNOR_                         1
+     $_XOR_                         11
+
+mapping tbuf
+
+54. Executing TECHMAP pass (map to technology primitives).
+
+54.1. Executing Verilog-2005 frontend: /Users/egehuriel/.ciel/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v
+Parsing Verilog input from `/Users/egehuriel/.ciel/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v' to AST representation.
+Generating RTLIL representation for module `\$_TBUF_'.
+Successfully finished Verilog frontend.
+
+54.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~3 debug messages>
+
+55. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+
+56. Executing TECHMAP pass (map to technology primitives).
+
+56.1. Executing Verilog-2005 frontend: /Users/egehuriel/.ciel/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v
+Parsing Verilog input from `/Users/egehuriel/.ciel/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v' to AST representation.
+Generating RTLIL representation for module `\$_DLATCH_P_'.
+Generating RTLIL representation for module `\$_DLATCH_N_'.
+Successfully finished Verilog frontend.
+
+56.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+57. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+
+58. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+  cell sky130_fd_sc_hd__dfxtp_2 (noninv, pins=3, area=21.27) is a direct match for cell type $_DFF_P_.
+  cell sky130_fd_sc_hd__dfrtp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN0_.
+  cell sky130_fd_sc_hd__dfstp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN1_.
+  cell sky130_fd_sc_hd__dfbbn_2 (noninv, pins=6, area=35.03) is a direct match for cell type $_DFFSR_NNN_.
+  final dff cell mappings:
+    unmapped dff cell: $_DFF_N_
+    \sky130_fd_sc_hd__dfxtp_2 _DFF_P_ (.CLK( C), .D( D), .Q( Q));
+    unmapped dff cell: $_DFF_NN0_
+    unmapped dff cell: $_DFF_NN1_
+    unmapped dff cell: $_DFF_NP0_
+    unmapped dff cell: $_DFF_NP1_
+    \sky130_fd_sc_hd__dfrtp_2 _DFF_PN0_ (.CLK( C), .D( D), .Q( Q), .RESET_B( R));
+    \sky130_fd_sc_hd__dfstp_2 _DFF_PN1_ (.CLK( C), .D( D), .Q( Q), .SET_B( R));
+    unmapped dff cell: $_DFF_PP0_
+    unmapped dff cell: $_DFF_PP1_
+    \sky130_fd_sc_hd__dfbbn_2 _DFFSR_NNN_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    unmapped dff cell: $_DFFSR_PNN_
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+
+58.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+Mapping DFF cells in module `\full_system':
+  mapped 14 $_DFF_PN0_ cells to \sky130_fd_sc_hd__dfrtp_2 cells.
+
+59. Printing statistics.
+
+=== full_system ===
+
+   Number of wires:                 77
+   Number of wire bits:             96
+   Number of public wires:           8
+   Number of public wire bits:      27
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 84
+     $_ANDNOT_                      13
+     $_MUX_                          1
+     $_NAND_                         6
+     $_NOR_                          1
+     $_NOT_                         16
+     $_ORNOT_                        7
+     $_OR_                          14
+     $_XNOR_                         1
+     $_XOR_                         11
+     sky130_fd_sc_hd__dfrtp_2       14
+
+[INFO]: USING STRATEGY AREA 0
+
+60. Executing ABC pass (technology mapping using ABC).
+
+60.1. Extracting gate netlist of module `\full_system' to `/tmp/yosys-abc-eUIotL/input.blif'..
+Extracted 70 gates and 85 wires to a netlist network with 15 inputs and 29 outputs.
+
+60.1.1. Executing ABC.
+Running ABC command: "/build/bin/yosys-abc" -s -f /tmp/yosys-abc-eUIotL/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-eUIotL/abc.script".
+ABC: 
+ABC: + read_blif /tmp/yosys-abc-eUIotL/input.blif 
+ABC: + read_lib -w /openlane/designs/part5_full/runs/RUN_2026.05.16_12.13.09/tmp/synthesis/trimmed.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.04 sec
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_8".
+ABC: Library "sky130A_merged" from "/openlane/designs/part5_full/runs/RUN_2026.05.16_12.13.09/tmp/synthesis/trimmed.lib" has 175 cells (17 skipped: 14 seq; 3 tri-state; 0 no func; 0 dont_use).  Time =     0.06 sec
+ABC: Memory =    9.54 MB. Time =     0.06 sec
+ABC: Warning: Detected 2 multi-output gates (for example, "sky130_fd_sc_hd__fa_1").
+ABC: + read_constr -v /openlane/designs/part5_full/runs/RUN_2026.05.16_12.13.09/tmp/synthesis/synthesis.sdc 
+ABC: Setting driving cell to be "sky130_fd_sc_hd__inv_2".
+ABC: Setting output load to be 33.442001.
+ABC: + read_constr /openlane/designs/part5_full/runs/RUN_2026.05.16_12.13.09/tmp/synthesis/synthesis.sdc 
+ABC: + fx 
+ABC: + mfs 
+ABC: + strash 
+ABC: + refactor 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + refactor 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + refactor -z 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + retime -D -D 10000 -M 5 
+ABC: + scleanup 
+ABC: Error: The network is combinational.
+ABC: + fraig_store 
+ABC: + balance 
+ABC: + fraig_store 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + refactor 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + refactor -z 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + fraig_store 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + refactor 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + refactor -z 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + fraig_store 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + refactor 
+ABC: + balance 
+ABC: + rewrite 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + refactor -z 
+ABC: + rewrite -z 
+ABC: + balance 
+ABC: + fraig_store 
+ABC: + fraig_restore 
+ABC: + amap -m -Q 0.1 -F 20 -A 20 -C 5000 
+ABC: + retime -D -D 10000 
+ABC: + &get -n 
+ABC: + &st 
+ABC: + &dch 
+ABC: + &nf 
+ABC: + &put 
+ABC: + buffer -N 10 -S 750.0 
+ABC: + upsize -D 10000 
+ABC: Current delay (1810.76 ps) does not exceed the target delay (10000.00 ps). Upsizing is not performed.
+ABC: + dnsize -D 10000 
+ABC: + stime -p 
+ABC: WireLoad = "none"  Gates =     58 ( 43.1 %)   Cap = 18.7 ff (  6.9 %)   Area =      409.14 ( 56.9 %)   Delay =  1841.29 ps  ( 19.0 %)               
+ABC: Path  0 --       4 : 0    3 pi                      A =   0.00  Df =  16.6   -9.8 ps  S =  28.7 ps  Cin =  0.0 ff  Cout =   4.6 ff  Cmax =   0.0 ff  G =    0  
+ABC: Path  1 --      47 : 4    1 sky130_fd_sc_hd__or4_2  A =   8.76  Df = 637.6 -463.3 ps  S =  91.0 ps  Cin =  1.5 ff  Cout =   1.6 ff  Cmax = 310.4 ff  G =   99  
+ABC: Path  2 --      50 : 4    1 sky130_fd_sc_hd__or4b_2 A =  10.01  Df =1266.8 -842.9 ps  S =  94.7 ps  Cin =  1.5 ff  Cout =   2.2 ff  Cmax = 265.5 ff  G =  143  
+ABC: Path  3 --      51 : 1    6 sky130_fd_sc_hd__buf_1  A =   3.75  Df =1438.4 -821.6 ps  S = 215.2 ps  Cin =  2.1 ff  Cout =  17.6 ff  Cmax = 130.0 ff  G =  821  
+ABC: Path  4 --      86 : 3    1 sky130_fd_sc_hd__and3_2 A =   7.51  Df =1626.8 -455.7 ps  S =  41.3 ps  Cin =  1.5 ff  Cout =   2.2 ff  Cmax = 309.5 ff  G =  141  
+ABC: Path  5 --      87 : 1    1 sky130_fd_sc_hd__buf_1  A =   3.75  Df =1841.3 -348.1 ps  S = 396.6 ps  Cin =  2.1 ff  Cout =  33.4 ff  Cmax = 130.0 ff  G = 1590  
+ABC: Start-point = pi3 (\u_sevenseg.refresh_count [3]).  End-point = po14 ($abc$1597$flatten\u_sevenseg.$0\refresh_count[12:0][12]).
+ABC: + print_stats -m 
+ABC: netlist                       : i/o =   15/   29  lat =    0  nd =    58  edge =    120  area =409.13  delay = 6.00  lev = 6
+ABC: + write_blif /tmp/yosys-abc-eUIotL/output.blif 
+
+60.1.2. Re-integrating ABC results.
+ABC RESULTS:   sky130_fd_sc_hd__or4_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__or4bb_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__or4b_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__or2_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a21oi_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__xor2_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__a21o_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__and4_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o211a_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__and3b_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nor2_2 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__nand2_2 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__and2b_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__xnor2_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__nand4_2 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a31o_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__and3_2 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__buf_1 cells:        7
+ABC RESULTS:   sky130_fd_sc_hd__inv_2 cells:       18
+ABC RESULTS:        internal signals:       41
+ABC RESULTS:           input signals:       15
+ABC RESULTS:          output signals:       29
+Removing temp directory.
+
+61. Executing SETUNDEF pass (replace undef values with defined constants).
+
+62. Executing HILOMAP pass (mapping to constant drivers).
+
+63. Executing SPLITNETS pass (splitting up multi-bit signals).
+
+64. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \full_system..
+Removed 0 unused cells and 94 unused wires.
+<suppressed ~2 debug messages>
+
+65. Executing INSBUF pass (insert buffer cells for connected wires).
+
+66. Executing CHECK pass (checking for obvious problems).
+Checking module full_system...
+Warning: Wire full_system.\seg [6] is used but has no driver.
+Warning: Wire full_system.\seg [5] is used but has no driver.
+Warning: Wire full_system.\seg [4] is used but has no driver.
+Warning: Wire full_system.\seg [3] is used but has no driver.
+Warning: Wire full_system.\seg [2] is used but has no driver.
+Warning: Wire full_system.\seg [1] is used but has no driver.
+Warning: Wire full_system.\seg [0] is used but has no driver.
+Warning: Wire full_system.\dp is used but has no driver.
+Warning: Wire full_system.\an [1] is used but has no driver.
+Warning: Wire full_system.\an [0] is used but has no driver.
+Found and reported 10 problems.
+
+67. Printing statistics.
+
+=== full_system ===
+
+   Number of wires:                 76
+   Number of wire bits:             83
+   Number of public wires:          19
+   Number of public wire bits:      26
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 80
+     sky130_fd_sc_hd__a21o_2         1
+     sky130_fd_sc_hd__a21oi_2        2
+     sky130_fd_sc_hd__a31o_2         2
+     sky130_fd_sc_hd__and2b_2        1
+     sky130_fd_sc_hd__and3_2         5
+     sky130_fd_sc_hd__and3b_2        1
+     sky130_fd_sc_hd__and4_2         2
+     sky130_fd_sc_hd__buf_1          7
+     sky130_fd_sc_hd__conb_1         8
+     sky130_fd_sc_hd__dfrtp_2       14
+     sky130_fd_sc_hd__inv_2         18
+     sky130_fd_sc_hd__nand2_2        4
+     sky130_fd_sc_hd__nand4_2        1
+     sky130_fd_sc_hd__nor2_2         3
+     sky130_fd_sc_hd__o211a_2        2
+     sky130_fd_sc_hd__or2_2          1
+     sky130_fd_sc_hd__or4_2          1
+     sky130_fd_sc_hd__or4b_2         1
+     sky130_fd_sc_hd__or4bb_2        1
+     sky130_fd_sc_hd__xnor2_2        2
+     sky130_fd_sc_hd__xor2_2         3
+
+   Chip area for module '\full_system': 807.024000
+
+68. Executing Verilog backend.
+Dumping module `\full_system'.
+
+Warnings: 10 unique messages, 10 total
+End of script. Logfile hash: a5d3497cc9, CPU: user 0.43s system 0.03s, MEM: 28.68 MB peak
+Yosys 0.30+48 (git sha1 14d50a176d5, gcc 8.3.1 -fPIC -Os)
+Time spent: 35% 2x abc (0 sec), 12% 4x stat (0 sec), ...

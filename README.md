@@ -207,7 +207,7 @@ designs/
 
 ## Running the Flow
 
-### Using Make (recommended)
+### Using Make
 
 Run from the project root without entering the Docker container:
 
